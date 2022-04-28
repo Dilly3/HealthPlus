@@ -369,46 +369,13 @@ func BookByIdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("now", err)
 		return
 	}
-	// var ans []string
-	// var a, b, c, d, e, f, g, h string
+
 	params := mux.Vars(r)
 	ID := params["ID"]
 
 	doctor := db.FindDoctorByIDandUserName(ID)
 	workinghrs := doctor.SetWorkingHours()
-	// if doctor.WorkingHour == "8am - 4pm" {
-	// 	a = "8am-9am"
-	// 	b = "9am-10am"
-	// 	c = "10am-11am"
-	// 	d = "11am-12pm"
-	// 	e = "12pm-1pm"
-	// 	f = "1pm-2pm"
-	// 	g = "2pm-3pm"
-	// 	h = "3pm-4pm"
-	// } else if doctor.WorkingHour == "4pm - 12am" {
-	// 	a = "4pm-5pm"
-	// 	b = "5pm-6pm"
-	// 	c = "6pm-7pm"
-	// 	d = "7pm-8pm"
-	// 	e = "8pm-9pm"
-	// 	f = "9pm-10pm"
-	// 	g = "10pm-11pm"
-	// 	h = "11pm-12am"
-	// } else if doctor.WorkingHour == "12am - 8am" {
-	// 	a = "12am-1am"
-	// 	b = "1am-2am"
-	// 	c = "2am-3am"
-	// 	d = "3am-4am"
-	// 	e = "4am-5am"
-	// 	f = "5am-6am"
-	// 	g = "6am-7am"
-	// 	h = "7am-8am"
-	// } else if doctor.WorkingHour == "NOT AVAILABLE" {
-	// 	http.Redirect(w, r, "/doctorList", http.StatusFound)
-	// }
-	// ans = append(ans, a, b, c, d, e, f, g, h)
 
-	//Calls or writes the item inside that database in the html file/template where it is called
 	err = t.Execute(w, workinghrs)
 	if err != nil {
 		fmt.Println("now", err)
